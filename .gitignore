@@ -41,7 +41,6 @@ build/Release
 # Dependency directories
 node_modules/
 jspm_packages/
-packages/
 
 # TypeScript v1 declaration files
 typings/
@@ -146,3 +145,5 @@ $RECYCLE.BIN/
 
 # Custom
 credentials.json
+package.json
+package-lock.json
