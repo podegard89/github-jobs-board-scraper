@@ -24,21 +24,29 @@ async function scrapePage(i) {
 
     let i = 1;
     let rows = [];
-    while(true) {
+    while (true) {
         const newRows = await scrapePage(i);
         if (newRows.length === 0) break;
         rows = rows.concat(newRows);
         i++;
     }
 
+   function sortAndFilter(rows) {
+        let filteredRows = rows.filter(job => /.*developer.*/i.test(job.title));
+        filteredRows.sort(function (a, b) {
+            return new Date(b.date).getTime() - new Date(a.date).getTime();
+        });
+        return filteredRows;
+    }
+
     const sheet = new Sheet();
     await sheet.load();
 
-    await sheet.addRows(rows);
+    await sheet.addRows(sortAndFilter(rows));
 })()
 
 
 
 
-    
+
 
